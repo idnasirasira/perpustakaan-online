@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,15 +24,22 @@ Route::get('/example/table', function () {
 });
 
 Auth::routes();
+Route::get('user', function(){
+    return view('page.user.index');
+})->name('user.index');
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('book', function(){
-    return view('page.book.index');
-})->name('book.index');
+// Route::get('/book', [App\Http\Controllers\BookController::class, 'index'])->name('book.index');
+// Route::get('/book/create', [App\Http\Controllers\BookController::class, 'create'])->name('book.create');
 
-Route::get('user', function(){
-    return view('page.user.index');
-})->name('user.index');
+// Route::post('/book', [App\Http\Controllers\BookController::class, 'store'])->name('book.index');
+
+Route::get('/book', [BookController::class, 'index'])->name('book.index');
+Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
+Route::post('/book', [BookController::class, 'store'])->name('book.store');
+Route::delete('/book/{book}', [BookController::class, 'destroy'])->name('book.destroy');
+Route::get('/book/{book}/edit', [BookController::class, 'edit'])->name('book.edit');
+Route::patch('/book/{book}', [BookController::class, 'update'])->name('book.update');

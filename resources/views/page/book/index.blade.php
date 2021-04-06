@@ -23,11 +23,17 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
+        <div class="col-12 mb-2">
+        <a href="/book/create" class="btn btn-primary">Tambah Buku</a>
+        @if (session('status'))
+                      <div class="alert alert-success my-3">
+                          {{ session('status') }}
+                      </div>
+                  @endif
+            </div>
             <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Responsive Hover Table</h3>
-    
                     <div class="card-tools">
                       <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -46,41 +52,31 @@
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>User</th>
-                          <th>Date</th>
-                          <th>Status</th>
-                          <th>Reason</th>
+                          <th>Code</th>
+                          <th>Title</th>
+                          <th>Publisher</th>
+                          <th>Author</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
+                         @foreach ( $book as $book )
                         <tr>
-                          <td>183</td>
-                          <td>John Doe</td>
-                          <td>11-7-2014</td>
-                          <td><span class="tag tag-success">Approved</span></td>
-                          <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                          <td>{{ $loop->iteration }}</td>
+                          <td>{{ $book->code }}</td>
+                          <td>{{ $book->title }}</td>
+                          <td>{{ $book->publisher }}</td>
+                          <td>{{ $book->author }}</td>
+                          <td>
+                          <a href="/book/{{ $book->id }}/edit" class="btn btn-primary">Edit</a>
+                            <form action="/book/{{ $book->id }}" method="post" class="d-inline">
+                                  @method('delete')
+                                  @csrf
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                          </td>
                         </tr>
-                        <tr>
-                          <td>219</td>
-                          <td>Alexander Pierce</td>
-                          <td>11-7-2014</td>
-                          <td><span class="tag tag-warning">Pending</span></td>
-                          <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                        </tr>
-                        <tr>
-                          <td>657</td>
-                          <td>Bob Doe</td>
-                          <td>11-7-2014</td>
-                          <td><span class="tag tag-primary">Approved</span></td>
-                          <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                        </tr>
-                        <tr>
-                          <td>175</td>
-                          <td>Mike Doe</td>
-                          <td>11-7-2014</td>
-                          <td><span class="tag tag-danger">Denied</span></td>
-                          <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                        </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
