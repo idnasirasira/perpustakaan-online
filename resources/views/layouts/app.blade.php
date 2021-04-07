@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js' )}}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,6 +22,8 @@
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="{{asset('asset/plugins/daterangepicker/daterangepicker.css')}}">
+    <link rel="stylesheet" href="{{asset('asset/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Theme style -->
@@ -47,7 +50,7 @@
               <img src="{{asset('assets/img')}}/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-              <a href="#" class="d-block"></a>
+              <a href="#" class="d-block">{{ auth()->user()->name }}</a>
             </div>
           </div>
     
@@ -68,46 +71,33 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
-              
+                   @if (auth()->user()->level == "1")
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('book.index')}}" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
-                    Home
+                    Buku
                   </p>
                 </a>
               </li>
-              <li class="nav-item menu-open">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-circle"></i>
+              <li class="nav-item">
+                <a href="{{route('sewa.index')}}" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
-                    Master
-                    <i class="right fas fa-angle-left"></i>
+                    Sewa
                   </p>
                 </a>
-                <ul class="nav nav-treeview">
+              </li>
+              @endif
                   <li class="nav-item">
-                    <a href="{{route('book.index')}}" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Buku</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
+                  @if (auth()->user()->level == "2")
                     <a href="{{route('user.index')}}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Pengguna</p>
                     </a>
                   </li>
+                  @endif
                 </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-th"></i>
-                  <p>
-                    Simple Link
-                    <span class="right badge badge-danger">New</span>
-                  </p>
-                </a>
               </li>
             </ul>
           </nav>

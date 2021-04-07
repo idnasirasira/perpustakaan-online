@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+
+    function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -49,7 +53,9 @@ class BookController extends Controller
         'code' => 'required',
         'title' => 'required',
         'publisher' => 'required',
-        'author' => 'required'
+        'author' => 'required',
+        'stock' => 'required',
+        'price' => 'required'
         ]);
         
         Book::create($request->all());
@@ -91,7 +97,9 @@ class BookController extends Controller
             'code' => 'required',
             'title' => 'required',
             'publisher' => 'required',
-            'author' => 'required'
+            'author' => 'required',
+            'stock' => 'required',
+            'price' => 'required'
         ]);
 
         Book::where('id', $book->id)
@@ -99,7 +107,9 @@ class BookController extends Controller
                 'code' => $request->code,
                 'title' => $request->title,
                 'publisher' => $request->publisher,
-                'author' => $request->author
+                'author' => $request->author,
+                'stock' => $request->stock,
+                'price' => $request->price
             ]);
             return redirect('/book')->with('status', 'Data buku Berhasil Diedit!');
     }

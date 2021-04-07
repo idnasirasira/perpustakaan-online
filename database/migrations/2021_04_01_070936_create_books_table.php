@@ -19,6 +19,8 @@ class CreateBooksTable extends Migration
             $table->string('title')->unique();
             $table->string('publisher');
             $table->string('author');
+            $table->integer('stock');
+            $table->double('price', 8, 2);
             $table->timestamps();
         });
     }

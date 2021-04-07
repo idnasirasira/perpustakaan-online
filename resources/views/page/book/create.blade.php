@@ -56,6 +56,19 @@
             <input type="text" class="form-control @error('author') is-invalid @enderror" id="author" 
             placeholder="Masukkan Author" name="author" value="{{ old('author') }}">
         </div>
+
+        <div class="form-group">
+            <label for="stock">Stock</label>
+            <input type="text" class="form-control @error('stock') is-invalid @enderror" id="stock" 
+            placeholder="Masukkan Stock" name="stock" value="{{ old('stock') }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" 
+            placeholder="Masukkan Harga" name="price" value="{{ old('price') }}">
+        </div>
+
         <button type="submit" class="btn btn-primary my-3">Tambah Buku!</button>
         </form>
         </div>

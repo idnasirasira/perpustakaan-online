@@ -4,6 +4,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SewaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,10 +42,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Route::post('/book', [App\Http\Controllers\BookController::class, 'store'])->name('book.index');
 
-Route::get('/book', [BookController::class, 'index'])->name('book.index');
-Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
-Route::post('/book', [BookController::class, 'store'])->name('book.store');
-Route::delete('/book/{book}', [BookController::class, 'destroy'])->name('book.destroy');
-Route::get('/book/{book}/edit', [BookController::class, 'edit'])->name('book.edit');
-Route::patch('/book/{book}', [BookController::class, 'update'])->name('book.update');
+Route::group(['middleware' => ['auth','ceklevel:1']], function () {
+    Route::get('/sewa', [SewaController::class, 'index'])->name('sewa.index');
+    Route::get('/book', [BookController::class, 'index'])->name('book.index');
+    Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
+    Route::post('/book', [BookController::class, 'store'])->name('book.store');
+    Route::delete('/book/{book}', [BookController::class, 'destroy'])->name('book.destroy');
+    Route::get('/book/{book}/edit', [BookController::class, 'edit'])->name('book.edit');
+    Route::patch('/book/{book}', [BookController::class, 'update'])->name('book.update');
+});
 
+Route::group(['middleware' => ['auth','ceklevel:2']], function () {
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+});

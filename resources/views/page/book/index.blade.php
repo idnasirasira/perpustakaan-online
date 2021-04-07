@@ -56,6 +56,8 @@
                           <th>Title</th>
                           <th>Publisher</th>
                           <th>Author</th>
+                          <th>Stock</th>
+                          <th>Price</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -67,12 +69,17 @@
                           <td>{{ $book->title }}</td>
                           <td>{{ $book->publisher }}</td>
                           <td>{{ $book->author }}</td>
+                          <td>{{ $book->stock }}</td>
+                          <td>{{ $book->price }}</td>
                           <td>
                           <a href="/book/{{ $book->id }}/edit" class="btn btn-primary">Edit</a>
                             <form action="/book/{{ $book->id }}" method="post" class="d-inline">
                                   @method('delete')
                                   @csrf
                             <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            <form action="#" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-warning">Pinjam</button>
                             </form>
                           </td>
                         </tr>

@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Responsive Hover Table</h3>
+                    <h3 class="card-title"></h3>
     
                     <div class="card-tools">
                       <div class="input-group input-group-sm" style="width: 150px;">
@@ -51,26 +51,26 @@
                         <tr>
                           <th>ID</th>
                           <th>Name</th>
+                          <th>Level</th>
                           <th>Email</th>
                           <th>Password</th>
-                          <th>No.Telephone</th>
-                          <th>Alamat</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
+                      @foreach ( $user as $user )
                         <tr>
-                          <td>001</td>
-                          <td>Mohammad Isa</td>
-                          <td>Isa@gmail.com</td>
-                          <td>123</td>
-                          <td>02192928282</td>
-                          <td>Jl. Rindang No 14</td>
+                          <td>{{ $loop->iteration }}</td>
+                          <td>{{ $user->name }}</td>
+                          <td>{{ $user->level }}</td>
+                          <td>{{ $user->email }}</td>
+                          <td>{{ $user->password }}</td>
                           <td>
                             <a href="#" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                             <a href="#" class="btn btn-xs btn-success"><i class="fa fa-pencil-alt"></i></a>
                           </td>
                         </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
