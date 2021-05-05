@@ -20,22 +20,22 @@
 <!-- /.content-header -->
 
 <!-- Main content -->
-<div class="content">
-    <div class="container-fluid">
+<section class="content">
+      <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-tools">
-                      <div class="input-group input-group-sm" style="width: 150px;">
-                      
-                            </div>
-                        </div>
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
         <form method="post" action="{{route('book.store')}}">
     @csrf
+
         <div class="form-group">
             <label for="code">Code</label>
-            <input type="text" class="form-control @error('code') is-invalid @enderror id="code" 
+            <input type="text" class="form-control @error('code') is-invalid @enderror" id="code" 
             placeholder="Masukkan Code" name="code" value="{{ old('code') }}">
         </div>
     
@@ -58,9 +58,9 @@
         </div>
 
         <div class="form-group">
-            <label for="stock">Stock</label>
-            <input type="text" class="form-control @error('stock') is-invalid @enderror" id="stock" 
-            placeholder="Masukkan Stock" name="stock" value="{{ old('stock') }}">
+            <label for="stok">Stok</label>
+            <input type="text" class="form-control @error('stok') is-invalid @enderror" id="stok" 
+            placeholder="Masukkan stok" name="stok" value="{{ old('stok') }}">
         </div>
         
         <div class="form-group">

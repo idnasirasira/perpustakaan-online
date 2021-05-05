@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Datapeminjam;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -54,7 +55,7 @@ class BookController extends Controller
         'title' => 'required',
         'publisher' => 'required',
         'author' => 'required',
-        'stock' => 'required',
+        'stok' => 'required',
         'price' => 'required'
         ]);
         
@@ -98,7 +99,7 @@ class BookController extends Controller
             'title' => 'required',
             'publisher' => 'required',
             'author' => 'required',
-            'stock' => 'required',
+            'stok' => 'required',
             'price' => 'required'
         ]);
 
@@ -108,7 +109,7 @@ class BookController extends Controller
                 'title' => $request->title,
                 'publisher' => $request->publisher,
                 'author' => $request->author,
-                'stock' => $request->stock,
+                'stok' => $request->stok,
                 'price' => $request->price
             ]);
             return redirect('/book')->with('status', 'Data buku Berhasil Diedit!');

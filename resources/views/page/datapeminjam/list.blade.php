@@ -6,12 +6,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
         <div class="col-sm-6">
-            <h1 class="m-0">Book Page</h1>
+            <h1 class="m-0">List Data Peminjam Page</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Master</a></li>
-            <li class="breadcrumb-item active">Book Page</li>
+            <li class="breadcrumb-item active">Data Peminjam Page</li>
             </ol>
         </div><!-- /.col -->
         </div><!-- /.row -->
@@ -23,17 +23,17 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-        <div class="col-12 mb-2">
-        <a href="/book/create" class="btn btn-primary">Tambah Buku</a>
+            <div class="col-12 mb-2">
+            <a href="/datapeminjam/create" class="btn btn-primary">Tambah Data</a>
         @if (session('status'))
                       <div class="alert alert-success my-3">
                           {{ session('status') }}
                       </div>
                   @endif
             </div>
-            <div class="col-12">
-                <div class="card">
-                  <div class="card-header">
+                <div class="col-12">
+                    <div class="card">
+                    <div class="card-header">
                     <div class="card-tools">
                       <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -53,34 +53,34 @@
                         <tr>
                           <th>ID</th>
                           <th>Code</th>
-                          <th>Title</th>
-                          <th>Publisher</th>
-                          <th>Author</th>
-                          <th>Stock</th>
-                          <th>Price</th>
-                          <th>Action</th>
+                          <th>Id Peminjam</th>
+                          <th>Jumlah Pinjam</th>
+                          <th>Harga</th>
+                          <th>Tanggal Pinjam</th>
+                          <th>Tanggal Kembali</th>
+                          <th>Denda perHari</th>
+                          <th>Denda Telat</th>
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody>
-                         @foreach ( $book as $book )
+                         @foreach ( $datapeminjam as $datapeminjam )
                         <tr>
                           <td>{{ $loop->iteration }}</td>
-                          <td>{{ $book->code }}</td>
-                          <td>{{ $book->title }}</td>
-                          <td>{{ $book->publisher }}</td>
-                          <td>{{ $book->author }}</td>
-                          <td>{{ $book->stok }}</td>
-                          <td>{{ $book->price }}</td>
+                          <td>{{ $datapeminjam->code }}</td>
+                          <td>{{ $datapeminjam->id_peminjam }}</td>
+                          <td>{{ $datapeminjam->jumlah_pinjam }}</td>
+                          <td>{{ $datapeminjam->total_harga }}</td>
+                          <td>{{ $datapeminjam->created_at }}</td>
+                          <td>{{ $datapeminjam->tanggal_kembali }}</td>
+                          <td>{{ $datapeminjam->denda }}</td>
+                          <td>{{ $datapeminjam->total_denda }}</td>
                           <td>
-                          <a href="/book/{{ $book->id }}/edit" class="btn btn-primary">Edit</a>
-                            <form action="/book/{{ $book->id }}" method="post" class="d-inline">
-                                  @method('delete')
-                                  @csrf
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                            <!-- </form>
-                            <form action="{{route('datapeminjam.create')}}" class="d-inline">
-                            <button type="submit" class="btn btn-warning">Pinjam</button>
-                            </form> -->
+                          @if($datapeminjam->tanggal_pengembalian == 0)
+                                <a href="datapeminjam/{{ $datapeminjam->id }}/edit" class="badge badge-primary">Pengembalian</a>
+                            @else
+                                <p class="badge badge-success">Dikembalikan</p>
+                            @endif
                           </td>
                         </tr>
                         @endforeach

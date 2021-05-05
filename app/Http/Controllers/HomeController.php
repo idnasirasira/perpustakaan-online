@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Datapeminjam;
+use App\Models\Book;
+
 
 class HomeController extends Controller
 {
@@ -23,6 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $book = Book::all()->count();
+        $datapeminjam = Datapeminjam::count();
+        return view('home', compact('datapeminjam', 'book'));
     }
 }

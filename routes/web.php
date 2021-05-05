@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SewaController;
+use App\Http\Controllers\DatapeminjamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,11 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function () {
     Route::delete('/book/{book}', [BookController::class, 'destroy'])->name('book.destroy');
     Route::get('/book/{book}/edit', [BookController::class, 'edit'])->name('book.edit');
     Route::patch('/book/{book}', [BookController::class, 'update'])->name('book.update');
+    Route::get('/datapeminjam/create', [DatapeminjamController::class, 'create'])->name('datapeminjam.create');
+    Route::get('/datapeminjam', [DatapeminjamController::class, 'list'])->name('datapeminjam.list');
+    Route::post('/datapeminjam', [DatapeminjamController::class, 'store'])->name('datapeminjam.store'); 
+    Route::get('/datapeminjam/{datapeminjam}/edit', [DatapeminjamController::class, 'edit'])->name('datapeminjam.edit');
+    Route::patch('/datapeminjam/{datapeminjam}', [DatapeminjamController::class, 'update'])->name('datapeminjam.update');
 });
 
 Route::group(['middleware' => ['auth','ceklevel:2']], function () {

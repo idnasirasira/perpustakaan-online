@@ -20,24 +20,31 @@
 <!-- /.content-header -->
 
 <!-- Main content -->
-<div class="content">
-    <div class="container-fluid">
+<!-- Main content -->
+<section class="content">
+      <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-tools">
-                      <div class="input-group input-group-sm" style="width: 150px;">
-                      
-                            </div>
-                        </div>
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
         <form action="{{ route('book.update', ['book' => $book->id]) }}" method="post">
         @method('patch')
             @csrf
+
+
         <div class="form-group">
             <label for="code">Code</label>
-            <input type="text" class="form-control @error('code') is-invalid @enderror id="code" 
+            <input type="text" class="form-control @error('code') is-invalid @enderror" id="code" 
             placeholder="Masukkan Code" name="code" value="{{ $book->code }}">
+        </div>
+        <div class="form-group">
+            <label for="stok">stok</label>
+            <input type="text" class="form-control @error('stok') is-invalid @enderror" id="stok" 
+            placeholder="Masukkan stok" name="stok" value="{{ $book->stok }}">
         </div>
     
         <div class="form-group">
