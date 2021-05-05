@@ -49,11 +49,6 @@
               <p>
                 List Data Peminjam
               </p>
-            <a href="{{route('sewa.index')}}" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Sewa
-              </p>
             </a>
           </li>
           @endif
